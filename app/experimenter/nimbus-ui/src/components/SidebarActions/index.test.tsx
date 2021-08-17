@@ -21,6 +21,11 @@ describe("SidebarActions", () => {
     expect(screen.getByTestId("action-archive")).toHaveTextContent(
       "Archive Experiment",
     );
+    expect(
+      screen.queryByText(
+        /Experiments can only be archived when in Draft or Complete./g,
+      ),
+    ).toBeInTheDocument();
   });
 
   it("renders an enabled archive button for unarchived experiment", () => {
@@ -29,6 +34,11 @@ describe("SidebarActions", () => {
     expect(screen.getByTestId("action-archive")).toHaveTextContent(
       "Archive Experiment",
     );
+    expect(
+      screen.queryByText(
+        /Experiments can only be archived when in Draft or Complete./g,
+      ),
+    ).not.toBeInTheDocument();
   });
   it("renders a disabled unarchive button for archived experiment", () => {
     render(<Subject experiment={{ isArchived: true, canArchive: false }} />);
@@ -36,6 +46,11 @@ describe("SidebarActions", () => {
     expect(screen.getByTestId("action-archive")).toHaveTextContent(
       "Unarchive Experiment",
     );
+    expect(
+      screen.queryByText(
+        /Experiments can only be archived when in Draft or Complete./g,
+      ),
+    ).toBeInTheDocument();
   });
 
   it("renders an enabled archive button for unarchived experiment", () => {
@@ -44,6 +59,11 @@ describe("SidebarActions", () => {
     expect(screen.getByTestId("action-archive")).toHaveTextContent(
       "Unarchive Experiment",
     );
+    expect(
+      screen.queryByText(
+        /Experiments can only be archived when in Draft or Complete./g,
+      ),
+    ).not.toBeInTheDocument();
   });
   it("calls update archive mutation when archive button is clicked", async () => {
     const experiment = mockExperiment({ isArchived: false, canArchive: true });

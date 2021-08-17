@@ -37,6 +37,9 @@ describe("AppLayoutWithSidebar", () => {
         "href",
         `${BASE_PATH}/my-special-slug/edit/audience`,
       );
+      expect(
+        screen.queryByText(/Experiments can only be edited when in Draft./g),
+      ).not.toBeInTheDocument();
     });
 
     it("renders expected active page class", async () => {
@@ -108,6 +111,9 @@ describe("AppLayoutWithSidebar", () => {
       ["overview", "branches", "metrics", "audience"].forEach((slug) => {
         expect(screen.getByTestId(`nav-edit-${slug}`).tagName).toEqual("SPAN");
       });
+      expect(
+        screen.queryByText(/Experiments can only be edited when in Draft./g),
+      ).toBeInTheDocument();
     });
   });
 });

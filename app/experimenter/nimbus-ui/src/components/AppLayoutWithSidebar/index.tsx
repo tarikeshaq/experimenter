@@ -128,7 +128,11 @@ export const AppLayoutWithSidebar = ({
                   {page.name}
                 </LinkNav>
               ))}
-
+              {!experiment.canEdit && (
+                <small className="text-muted py-2">
+                  &#9432; Experiments can only be edited when in Draft.
+                </small>
+              )}
               <SidebarActions {...{ experiment, refetch }} />
             </Nav>
           </nav>
